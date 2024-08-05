@@ -7,4 +7,4 @@ router.get('/', doctorController.getDoctors);
 router.get('/:id', doctorController.getDoctorById);
 router.put('/:id', doctorController.update);
 
-module.exports = router;
+export default router;

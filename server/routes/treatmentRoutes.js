@@ -7,5 +7,4 @@ router.get('/', treatmentController.getTreatments);
 router.get('/:id', treatmentController.getTreatmentById);
 router.put('/:id', treatmentController.updateTreatment);
 router.delete('/:id', treatmentController.deleteTreatment);
-
-module.exports = router;
+export default router;

@@ -8,4 +8,4 @@ router.get('/:id', medicalReportController.getMedicalReportById);
 router.put('/:id', medicalReportController.updateMedicalReport);
 router.delete('/:id', medicalReportController.deleteMedicalReport);
 
-module.exports = router;
+export default router;
