@@ -7,6 +7,12 @@ import bodyParser from "body-parser";
 import xss from "xss-clean";
 import mongoSanitize from "express-mongo-sanitize";
 import dbConnection from "./dbConfig/dbConnection.js";
+import patientRoutes from "./routes/patientRoutes.js";
+import medicalReportRoutes from "./routes/medicalReportRoutes.js";
+import doctorRoutes from "./routes/doctorRoutes.js";
+import treatmentRoutes from "./routes/treatmentRoutes.js";
+import detectionRoutes from "./routes/detectionRoutes.js";
+import imageRoutes from "./routes/irmRoutes.js";
 
 
 dotenv.config();
@@ -30,6 +36,13 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.use(morgan("dev"));
+
+app.use('/api/patients', patientRoutes);
+app.use('/api/medical-reports', medicalReportRoutes);
+app.use('/api/doctors', doctorRoutes);
+app.use('/api/treatments', treatmentRoutes);
+app.use('/api/detections', detectionRoutes);
+app.use('/api/images', imageRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
