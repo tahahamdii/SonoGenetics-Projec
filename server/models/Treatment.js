@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 const treatmentSchema = new mongoose.Schema({
     date: {
         type: Date,
@@ -31,4 +30,4 @@ const treatmentSchema = new mongoose.Schema({
 
 const Treatment = mongoose.model('Treatment', treatmentSchema);
 
-module.exports = Treatment;
+export default Treatment;

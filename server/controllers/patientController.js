@@ -1,6 +1,6 @@
-const Patient = require('../models/Patient');
+import Patient from '../models/Patient.js';
 
-exports.createPatient = async (req, res) => {
+export const createPatient = async (req, res) => {
     try {
         const patient = new Patient(req.body);
         await patient.save();
@@ -10,7 +10,7 @@ exports.createPatient = async (req, res) => {
     }
 };
 
-exports.getPatients = async (req, res) => {
+export const getPatients = async (req, res) => {
     try {
         const patients = await Patient.find();
         res.status(200).send(patients);
@@ -19,7 +19,7 @@ exports.getPatients = async (req, res) => {
     }
 };
 
-exports.getPatientById = async (req, res) => {
+export const getPatientById = async (req, res) => {
     try {
         const patient = await Patient.findById(req.params.id);
         if (!patient) {
@@ -31,7 +31,7 @@ exports.getPatientById = async (req, res) => {
     }
 };
 
-exports.updatePatient = async (req, res) => {
+export const updatePatient = async (req, res) => {
     try {
         const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!patient) {
@@ -43,7 +43,7 @@ exports.updatePatient = async (req, res) => {
     }
 };
 
-exports.deletePatient = async (req, res) => {
+export const deletePatient = async (req, res) => {
     try {
         const patient = await Patient.findByIdAndDelete(req.params.id);
         if (!patient) {

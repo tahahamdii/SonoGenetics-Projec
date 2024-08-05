@@ -1,6 +1,6 @@
-const Treatment = require('../models/Treatment');
+import Treatment from '../models/Treatment.js';
 
-exports.createTreatment = async (req, res) => {
+export const createTreatment = async (req, res) => {
     try {
         const treatment = new Treatment(req.body);
         await treatment.save();
@@ -10,7 +10,7 @@ exports.createTreatment = async (req, res) => {
     }
 };
 
-exports.getTreatments = async (req, res) => {
+export const getTreatments = async (req, res) => {
     try {
         const treatments = await Treatment.find();
         res.status(200).send(treatments);
@@ -19,7 +19,7 @@ exports.getTreatments = async (req, res) => {
     }
 };
 
-exports.getTreatmentById = async (req, res) => {
+export const getTreatmentById = async (req, res) => {
     try {
         const treatment = await Treatment.findById(req.params.id);
         if (!treatment) {
@@ -31,7 +31,7 @@ exports.getTreatmentById = async (req, res) => {
     }
 };
 
-exports.updateTreatment = async (req, res) => {
+export const updateTreatment = async (req, res) => {
     try {
         const treatment = await Treatment.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!treatment) {
@@ -43,7 +43,7 @@ exports.updateTreatment = async (req, res) => {
     }
 };
 
-exports.deleteTreatment = async (req, res) => {
+export const deleteTreatment = async (req, res) => {
     try {
         const treatment = await Treatment.findByIdAndDelete(req.params.id);
         if (!treatment) {

@@ -1,7 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const doctorController = require('../controllers/doctorController');
-
+import doctorController from '../controllers/doctorController.js';
 router.post('/', doctorController.createDoctor);
 router.get('/', doctorController.getDoctors);
 router.get('/:id', doctorController.getDoctorById);

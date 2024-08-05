@@ -1,7 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const medicalReportController = require('../controllers/medicalReportController');
-
+import medicalReportController from '../controllers/medicalReportController.js';
 router.post('/', medicalReportController.createMedicalReport);
 router.get('/', medicalReportController.getMedicalReports);
 router.get('/:id', medicalReportController.getMedicalReportById);

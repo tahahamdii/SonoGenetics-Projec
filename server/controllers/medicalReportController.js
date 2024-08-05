@@ -1,55 +1,55 @@
-const MedicalReport = require('../models/MedicalReport');
+import MedicalReport from '../models/MedicalReport.js';
 
-exports.createMedicalReport = async (req, res) => {
+export const createMedicalReport = async (req, res) => {
     try {
-        const report = new MedicalReport(req.body);
-        await report.save();
-        res.status(201).send(report);
+        const medicalReport = new MedicalReport(req.body);
+        await medicalReport.save();
+        res.status(201).send(medicalReport);
     } catch (error) {
         res.status(400).send(error);
     }
 };
 
-exports.getMedicalReports = async (req, res) => {
+export const getMedicalReports = async (req, res) => {
     try {
-        const reports = await MedicalReport.find();
-        res.status(200).send(reports);
+        const medicalReports = await MedicalReport.find();
+        res.status(200).send(medicalReports);
     } catch (error) {
         res.status(500).send(error);
     }
 };
 
-exports.getMedicalReportById = async (req, res) => {
+export const getMedicalReportById = async (req, res) => {
     try {
-        const report = await MedicalReport.findById(req.params.id);
-        if (!report) {
+        const medicalReport = await MedicalReport.findById(req.params.id);
+        if (!medicalReport) {
             return res.status(404).send();
         }
-        res.status(200).send(report);
+        res.status(200).send(medicalReport);
     } catch (error) {
         res.status(500).send(error);
     }
 };
 
-exports.updateMedicalReport = async (req, res) => {
+export const updateMedicalReport = async (req, res) => {
     try {
-        const report = await MedicalReport.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-        if (!report) {
+        const medicalReport = await MedicalReport.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!medicalReport) {
             return res.status(404).send();
         }
-        res.status(200).send(report);
+        res.status(200).send(medicalReport);
     } catch (error) {
         res.status(400).send(error);
     }
 };
 
-exports.deleteMedicalReport = async (req, res) => {
+export const deleteMedicalReport = async (req, res) => {
     try {
-        const report = await MedicalReport.findByIdAndDelete(req.params.id);
-        if (!report) {
+        const medicalReport = await MedicalReport.findByIdAndDelete(req.params.id);
+        if (!medicalReport) {
             return res.status(404).send();
         }
-        res.status(200).send(report);
+        res.status(200).send(medicalReport);
     } catch (error) {
         res.status(500).send(error);
     }

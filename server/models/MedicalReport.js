@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 const medicalReportSchema = new mongoose.Schema({
     patientId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,4 +30,4 @@ const medicalReportSchema = new mongoose.Schema({
 
 const MedicalReport = mongoose.model('MedicalReport', medicalReportSchema);
 
-module.exports = MedicalReport;
+export default MedicalReport;

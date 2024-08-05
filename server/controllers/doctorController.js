@@ -1,6 +1,6 @@
-const Doctor = require('../models/Doctor');
+import Doctor from '../models/Doctor.js';
 
-exports.createDoctor = async (req, res) => {
+export const createDoctor = async (req, res) => {
     try {
         const doctor = new Doctor(req.body);
         await doctor.save();
@@ -10,7 +10,7 @@ exports.createDoctor = async (req, res) => {
     }
 };
 
-exports.getDoctors = async (req, res) => {
+export const getDoctors = async (req, res) => {
     try {
         const doctors = await Doctor.find();
         res.status(200).send(doctors);
@@ -19,7 +19,7 @@ exports.getDoctors = async (req, res) => {
     }
 };
 
-exports.getDoctorById = async (req, res) => {
+export const getDoctorById = async (req, res) => {
     try {
         const doctor = await Doctor.findById(req.params.id);
         if (!doctor) {
@@ -31,7 +31,7 @@ exports.getDoctorById = async (req, res) => {
     }
 };
 
-exports.updateDoctor = async (req, res) => {
+export const updateDoctor = async (req, res) => {
     try {
         const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!doctor) {
@@ -43,7 +43,7 @@ exports.updateDoctor = async (req, res) => {
     }
 };
 
-exports.deleteDoctor = async (req, res) => {
+export const deleteDoctor = async (req, res) => {
     try {
         const doctor = await Doctor.findByIdAndDelete(req.params.id);
         if (!doctor) {
