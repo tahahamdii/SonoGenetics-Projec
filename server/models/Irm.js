@@ -25,4 +25,4 @@ const irmSchema = new mongoose.Schema({
 
 const Irm = mongoose.model('Irm', irmSchema);
 
-export default Image;
+export default Irm;
