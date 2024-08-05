@@ -6,7 +6,8 @@ import {
     getMedicalReportById,
     updateMedicalReport,
     deleteMedicalReport
-} from '../controllers/medicalReportController.js';router.post('/', medicalReportController.createMedicalReport);
+} from '../controllers/medicalReportController.js';
+router.post('/', createMedicalReport);
 router.get('/', getMedicalReports);
 router.get('/:id', getMedicalReportById);
 router.put('/:id', updateMedicalReport);

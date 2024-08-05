@@ -6,7 +6,7 @@ import {
     getDoctorById,
     updateDoctor,
     deleteDoctor
-} from '../controllers/doctorController.js';router.post('/', doctorController.createDoctor);
+} from '../controllers/doctorController.js';
 
 router.post('/', createDoctor);
 router.get('/', getDoctors);
