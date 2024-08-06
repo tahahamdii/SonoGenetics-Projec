@@ -1,9 +1,24 @@
 import Patient from '../models/Patient.js';
 
+import MedicalReport from '../models/MedicalReport.js';
+
 export const createPatient = async (req, res) => {
     try {
-        const patient = new Patient(req.body);
+        const { name, age, gender, address, contact, medicalReportdata } = req.body;
+
+        const medicalReport = new MedicalReport(medicalReportdata);
+        await medicalReport.save();
+
+        const patient = new Patient({
+            name,
+            age,
+            gender,
+            address,
+            contact,
+            medicalReport: medicalReport._id
+        });
         await patient.save();
+
         res.status(201).send(patient);
     } catch (error) {
         res.status(400).send(error);

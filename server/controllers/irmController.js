@@ -93,8 +93,8 @@ router.post('/upload', upload.single('image'), (req, res) => {
       console.log(err);
       return res.status(500).json({
         success: false,
-        message: "Error"
-      });
+        message: err.message
+        });
     }
 
     res.status(200).json({

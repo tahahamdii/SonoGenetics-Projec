@@ -1,28 +1,23 @@
 import mongoose from 'mongoose';
 const medicalReportSchema = new mongoose.Schema({
-    patientId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Patient'
-    },
+    
     doctorId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: 'Doctor'
     },
     diagnosis: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     treatment: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     date: {
         type: Date,
-        required: true
+        required: false
     }
 }, {
     timestamps: true
