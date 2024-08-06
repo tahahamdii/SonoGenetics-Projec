@@ -63,3 +63,13 @@ export const deleteImage = async (req, res) => {
         res.status(500).send(error);
     }
 };
+export const getImagesByTumorLocation = async (req, res) => {
+    try {
+        const { location } = req.params;
+        const images = await Irm.find({ tumor_location: location });
+        res.status(200).send(images);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
