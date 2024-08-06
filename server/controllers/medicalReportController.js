@@ -53,4 +53,17 @@ export const deleteMedicalReport = async (req, res) => {
     } catch (error) {
         res.status(500).send(error);
     }
+
+    
 };
+export const getReportsByDateRange = async (req, res) => {
+    try {
+        const { startDate, endDate } = req.params;
+        const reports = await MedicalReport.find({ date: { $gte: new Date(startDate), $lte: new Date(endDate) } });
+        res.status(200).send(reports);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
+
