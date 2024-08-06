@@ -13,7 +13,7 @@ import doctorRoutes from "./routes/doctorRoutes.js";
 import treatmentRoutes from "./routes/treatmentRoutes.js";
 import detectionRoutes from "./routes/detectionRoutes.js";
 import imageRoutes from "./routes/irmRoutes.js";
-
+import uploadRoute from "./controllers/irmController.js";
 
 dotenv.config();
 
@@ -43,6 +43,8 @@ app.use('/api/doctors', doctorRoutes);
 app.use('/api/treatments', treatmentRoutes);
 app.use('/api/detections', detectionRoutes);
 app.use('/api/images', imageRoutes);
+
+app.use("/api/images" , uploadRoute);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

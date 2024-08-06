@@ -1,6 +1,7 @@
 import Irm from '../models/Irm.js';
 import cloudinary from '../utils/cloudinary.js';
 import upload from '../middelwares/multer.js';
+import express from 'express';
 export const createImage = async (req, res) => {
     try {
         const image = new Irm({
