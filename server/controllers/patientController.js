@@ -65,3 +65,13 @@ export const getPatientsByAgeRange = async (req, res) => {
     }
 };
 
+export const getPatientsByGender = async (req, res) => {
+    try {
+        const { gender } = req.params;
+        const patients = await Patient.find({ gender });
+        res.status(200).send(patients);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
