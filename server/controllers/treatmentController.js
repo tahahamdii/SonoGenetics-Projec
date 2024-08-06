@@ -103,3 +103,19 @@ export const addTreatmentToReport = async (req, res) => {
         res.status(400).send(error);
     }
 };
+
+ 
+export const getTreatmentsForReport = async (req, res) => {
+    try {
+        const { reportId } = req.params;
+        const medicalReport = await MedicalReport.findById(reportId).populate('treatments');
+
+        if (!medicalReport) {
+            return res.status(404).send({ message: 'Medical report not found' });
+        }
+
+        res.status(200).send(medicalReport.treatments);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
