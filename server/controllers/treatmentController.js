@@ -1,5 +1,30 @@
 import Treatment from '../models/Treatment.js';
+import Detection from '../models/Detection.js';
 
+export const addDetectionToReport = async (req, res) => {
+    try {
+        const { reportId } = req.params;
+        const detectionData = req.body;
+
+        const detection = new Detection({
+            ...detectionData,
+            seance: reportId
+        });
+        await detection.save();
+
+        const medicalReport = await MedicalReport.findById(reportId);
+        if (!medicalReport) {
+            return res.status(404).send({ message: 'Medical report not found' });
+        }
+
+        medicalReport.detections.push(detection._id);
+        await medicalReport.save();
+
+        res.status(201).send(detection);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};
 export const createTreatment = async (req, res) => {
     try {
         const treatment = new Treatment(req.body);
