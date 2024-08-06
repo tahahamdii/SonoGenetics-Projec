@@ -66,4 +66,13 @@ export const getReportsByDateRange = async (req, res) => {
     }
 };
 
+export const getReportsByPatientId = async (req, res) => {
+    try {
+        const { patientId } = req.params;
+        const reports = await MedicalReport.find({ patient: patientId });
+        res.status(200).send(reports);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
 
