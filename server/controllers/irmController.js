@@ -1,5 +1,6 @@
 import Irm from '../models/Irm.js';
-
+import cloudinary from '../utils/cloudinary.js';
+import upload from '../middelwares/multer.js';
 export const createImage = async (req, res) => {
     try {
         const image = new Irm({
@@ -82,3 +83,26 @@ export const getImagesByTumorSizeRange = async (req, res) => {
         res.status(500).send(error);
     }
 };
+
+const router = express.Router();
+
+router.post('/upload', upload.single('image'), (req, res) => {
+  cloudinary.uploader.upload(req.file.path, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Error"
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Uploaded!",
+      data: result
+    });
+  });
+});
+
+export default router;
+        
