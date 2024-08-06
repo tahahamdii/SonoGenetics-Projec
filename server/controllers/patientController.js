@@ -54,3 +54,14 @@ export const deletePatient = async (req, res) => {
         res.status(500).send(error);
     }
 };
+
+export const getPatientsByAgeRange = async (req, res) => {
+    try {
+        const { minAge, maxAge } = req.params;
+        const patients = await Patient.find({ age: { $gte: minAge, $lte: maxAge } });
+        res.status(200).send(patients);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
