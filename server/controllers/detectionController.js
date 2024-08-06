@@ -54,3 +54,14 @@ export const deleteDetection = async (req, res) => {
         res.status(500).send(error);
     }
 };
+
+export const getDetectionsBySeanceId = async (req, res) => {
+    try {
+        const { treatmentId } = req.params;
+        const detections = await Detection.find({ treatment: treatmentId });
+        res.status(200).send(detections);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+

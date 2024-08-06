@@ -4,7 +4,7 @@ const detectionSchema = new mongoose.Schema({
     seance: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Seance' 
+        ref: 'Treatement' 
     },
     date: {
         type: Date,
