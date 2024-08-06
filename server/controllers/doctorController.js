@@ -54,3 +54,13 @@ export const deleteDoctor = async (req, res) => {
         res.status(500).send(error);
     }
 };
+export const getDoctorsBySpecialty = async (req, res) => {
+    try {
+        const { specialty } = req.params;
+        const doctors = await Doctor.find({ specialty });
+        res.status(200).send(doctors);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
