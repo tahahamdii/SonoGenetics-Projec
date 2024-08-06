@@ -64,4 +64,13 @@ export const getDetectionsBySeanceId = async (req, res) => {
         res.status(500).send(error);
     }
 };
+export const getDetectionsByDateRange = async (req, res) => {
+    try {
+        const { startDate, endDate } = req.params;
+        const detections = await Detection.find({ createdAt: { $gte: startDate, $lte: endDate } });
+        res.status(200).send(detections);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
 
