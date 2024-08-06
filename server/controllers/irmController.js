@@ -73,3 +73,12 @@ export const getImagesByTumorLocation = async (req, res) => {
     }
 };
 
+export const getImagesByTumorSizeRange = async (req, res) => {
+    try {
+        const { minSize, maxSize } = req.params;
+        const images = await Irm.find({ tumor_size: { $gte: minSize, $lte: maxSize } });
+        res.status(200).send(images);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
