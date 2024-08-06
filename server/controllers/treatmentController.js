@@ -54,3 +54,27 @@ export const deleteTreatment = async (req, res) => {
         res.status(500).send(error);
     }
 };
+export const addTreatmentToReport = async (req, res) => {
+    try {
+        const { reportId } = req.params;
+        const treatmentData = req.body;
+
+        const treatment = new Treatment({
+            ...treatmentData,
+            id_mage: reportId
+        });
+        await treatment.save();
+
+        const medicalReport = await MedicalReport.findById(reportId);
+        if (!medicalReport) {
+            return res.status(404).send({ message: 'Medical report not found' });
+        }
+
+        medicalReport.treatments.push(treatment._id);
+        await medicalReport.save();
+
+        res.status(201).send(treatment);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};
